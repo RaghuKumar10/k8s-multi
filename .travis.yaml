@@ -1,4 +1,3 @@
-language: generic
 sudo: required
 services:
   - docker
@@ -17,7 +16,6 @@ before_install:
   - gcloud container clusters get-credentials k8s-experiments-1
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker build -t raghukumarm/react-client-container -f ./client/Dockerfile.dev ./client
-
 script:
   - docker run -e CI=true raghukumarm/react-client-container npm run test
 deploy:
